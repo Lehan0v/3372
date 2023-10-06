@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{	
+	// 1 задание
+	cout << "Data types in bytes:" << '\n' <<
+		"int: " << sizeof(int) << '\n' <<
+		"short int: " << sizeof(short int) << '\n' <<
+		"float: " << sizeof(float) << '\n' <<
+		"double: " << sizeof(double) << '\n' <<
+		"long double: " << sizeof(long double) << '\n' <<
+		"bool: " << sizeof(bool) << '\n' <<
+		"char: " << sizeof(char) << '\n' << '\n';
+
+	// 2 задание
+	int a;
+	cout << "Enter a signed number:" << '\n';
+	cin >> a;
+	unsigned int b = 32; // 32 разряда
+	unsigned int m = 1 << b - 1; //побитовое сравнение
+	unsigned int m2 = 1 << b - 1; //побитовое сравнение для не целых чисел
+	
+	for (int i = 1; i <= b; i++)
+	{
+		cout << (a & m ? '1' : '0'); // представление числа 'a' в двоичной системе из 31 разряда
+		m = m >> 1;
+		
+		if (i % 8 == 0) // промежутки каждые 8 разрядов
+		{
+			cout << ' ';
+		}
+		
+		if (i % b - 1 == 0) // промежуток после знакового разряда
+		{
+			cout << ' ';
+		}
+	}
+	cout << endl;
+
+	// 3 задание
+	union
+	{
+		int c;
+		float d;
+	};
+
+	cout << "Enter a signed float number:" << '\n';
+	cin >> d;
+
+	for (int i = 1; i <= b; i++)
+	{
+		cout << (c & m2 ? '1' : '0'); // представление числа 'a' в двоичной системе из 31 разряда
+		m2 = m2 >> 1;
+		
+		if (i % 8 == 0) // промежутки каждые 8 разрядов
+		{
+			cout << ' ';
+		}
+		
+		if (i % b - 1 == 0) // промежуток после знакового разряда
+		{
+			cout << ' ';
+		}
+	}
+	return 0;
+}
